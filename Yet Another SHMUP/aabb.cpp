@@ -1,22 +1,22 @@
 #include "aabb.h"
 
-AABB::AABB(vec2 position, vec2 size)
+AABB::AABB(SDL_FPoint position, SDL_FPoint size)
 {
-	rect.x = (int)position.x;
-	rect.y = (int)position.y;
-	rect.w = (int)size.x;
-	rect.h = (int)size.y;
+	rect.x = position.x;
+	rect.y = position.y;
+	rect.w = size.x;
+	rect.h = size.y;
 }
 
-void AABB::tick(vec2 position)
+void AABB::tick(SDL_FPoint position)
 {
-	rect.x = (int)position.x;
-	rect.y = (int)position.y;
+	rect.x = position.x;
+	rect.y = position.y;
 }
 
 bool AABB::intersects(AABB* b)
 {
-	if (disabled)
+	if (disabled || b->disabled)
 		return false;
 
 	if (rect.x < (b->rect.x + b->rect.w) && (rect.x + rect.w) > b->rect.x && 

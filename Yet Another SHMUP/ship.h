@@ -10,4 +10,5 @@ public:
 	~Ship() = default;
 	
 	void fire();
+	std::vector<std::shared_ptr<Entity>> projectiles;
 };

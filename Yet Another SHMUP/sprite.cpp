@@ -33,14 +33,13 @@ Sprite::~Sprite()
 	SDL_DestroyTexture(texture);
 }
 
-void Sprite::render(SDL_Renderer* renderer, vec2 position, float rotation)
+void Sprite::render(SDL_Renderer* renderer, SDL_FPoint position, float rotation)
 {
     if (!texture || !visible)
         return;
 
     SDL_Rect srcrect = { 0, 0, (int)size.x, (int)size.y };
-    SDL_Rect dstrect = { (int)position.x, (int)position.y, (int)size.x, (int)size.y };
-    SDL_Point p_center = { (int)center.x, (int)center.y };
+    SDL_FRect dstrect = { position.x, position.y, size.x, size.y };
 
-    SDL_RenderCopyEx(renderer, texture, &srcrect, &dstrect, rotation, &p_center, SDL_FLIP_NONE);
+    SDL_RenderCopyExF(renderer, texture, &srcrect, &dstrect, rotation, &center, SDL_FLIP_NONE);
 }

@@ -148,7 +148,6 @@
     <ClInclude Include="ship.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="time.h" />
-    <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

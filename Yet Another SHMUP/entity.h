@@ -1,6 +1,5 @@
 #pragma once
 
-#include "types.h"
 #include "sprite.h"
 #include "aabb.h"
 #include "health.h"
@@ -16,8 +15,8 @@ public:
 	virtual void tick(float delta);
 
 	//Data
-	vec2 position = { 0,0 };
-	vec2 velocity = { 0,0 };
+	SDL_FPoint position = { 0,0 };
+	SDL_FPoint velocity = { 0,0 };
 	float rotation = 0;
 	int speed = 0;
 

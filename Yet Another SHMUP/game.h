@@ -15,5 +15,6 @@ public:
 	void tick(float delta) override;
 	
 	std::shared_ptr<Ship> player;
+	std::shared_ptr<Ship> enemy;
 };
 

@@ -92,9 +92,6 @@
     <ClInclude Include="time.h">
       <Filter>Header Files\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

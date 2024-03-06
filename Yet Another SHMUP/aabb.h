@@ -1,17 +1,16 @@
 #pragma once
 
-#include "types.h"
 #include <SDL.h>
 
 class AABB
 {
 public:
-	AABB(vec2 position, vec2 size);
+	AABB(SDL_FPoint position, SDL_FPoint size);
 	~AABB() = default;
 	
-	void tick(vec2 position);
+	void tick(SDL_FPoint position);
 	bool intersects(AABB* b);
 	bool disabled = false;
 
-	SDL_Rect rect = { 0,0,0,0 };
+	SDL_FRect rect = { 0,0,0,0 };
 };

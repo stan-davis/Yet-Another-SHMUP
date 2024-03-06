@@ -14,16 +14,8 @@ Input::~Input()
 	prev_key_state = nullptr;
 }
 
-void Input::tick(Ship& player)
+void Input::tick()
 {
-	player.velocity.x = (float)is_key_held(SDL_SCANCODE_RIGHT) - (float)is_key_held(SDL_SCANCODE_LEFT);
-	player.velocity.y = (float)is_key_held(SDL_SCANCODE_DOWN) - (float)is_key_held(SDL_SCANCODE_UP);
-
-	if (is_key_pressed(SDL_SCANCODE_Z))
-	{
-		player.fire();
-	}
-
 	memcpy(prev_key_state, keyboard_state, key_length);
 }
 

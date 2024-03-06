@@ -9,7 +9,7 @@ public:
     Input();
     ~Input();
 
-    void tick(Ship& player);
+    void tick();
 
     bool is_key_pressed(SDL_Scancode scancode);
     bool is_key_held(SDL_Scancode scancode);

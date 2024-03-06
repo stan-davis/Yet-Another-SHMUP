@@ -14,10 +14,7 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
         return 1;
     }
 
-    window = SDL_CreateWindow("Yet Another Shmup (YAS)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_width, window_height, 0);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-    if (!window || !renderer)
+    if (SDL_CreateWindowAndRenderer(window_width, window_height, 0, &window, &renderer) != 0)
     {
         printf("Error: Failed to create window or renderer.\n '%s'\n", SDL_GetError());
         return 1;
@@ -68,6 +65,7 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
         }
 
         SDL_RenderPresent(renderer);
+        input.tick();
         time.late_tick();
     }
 
