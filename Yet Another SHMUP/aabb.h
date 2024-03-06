@@ -11,6 +11,7 @@ public:
 	
 	void tick(vec2 position);
 	bool intersects(AABB* b);
+	bool disabled = false;
 
 	SDL_Rect rect = { 0,0,0,0 };
 };

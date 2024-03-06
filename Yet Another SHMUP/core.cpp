@@ -30,6 +30,8 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
         return 1;
     }
 
+    time.set_target_frame_rate(_frame_rate);
+
     start();
 
     while (is_running)
@@ -47,13 +49,26 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
             }
         }
 
+        time.tick();
         SDL_SetRenderDrawColor(renderer, 0, 128, 255, 255); //Blue
         SDL_RenderClear(renderer);
 
-        tick(0); //delta
-        render();
+        //Tick core
+        tick(time.get_delta_time());
+
+        //Tick entities
+        for (auto& entity : entities)
+            entity->tick(time.get_delta_time());
+
+        //Render entities
+        for (auto& entity : entities)
+        {
+            if (entity->sprite)
+                entity->sprite->render(renderer, entity->position, entity->rotation);
+        }
 
         SDL_RenderPresent(renderer);
+        time.late_tick();
     }
 
     SDL_DestroyRenderer(renderer);

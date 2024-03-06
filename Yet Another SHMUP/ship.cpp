@@ -1,10 +1,8 @@
 #include "ship.h"
 
-void Ship::tick(float delta)
+void Ship::fire()
 {
-	position.x += velocity.x * speed * delta;
-	position.y += velocity.y * speed * delta;
+	printf("Fire\n");
 
-	if (aabb)
-		aabb->tick(position);
+
 }

@@ -3,6 +3,8 @@
 #include "core.h"
 #include "ship.h"
 
+#include <vector>
+
 class Game : public Core
 {
 public:
@@ -11,8 +13,7 @@ public:
 
 	void start() override;
 	void tick(float delta) override;
-	void render() override;
-
+	
 	std::shared_ptr<Ship> player;
 };
 

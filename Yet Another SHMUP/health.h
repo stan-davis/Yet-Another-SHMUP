@@ -8,4 +8,6 @@ public:
 
 	int max = 0;
 	int current = 0;
+
+	void change_health(int value);
 };

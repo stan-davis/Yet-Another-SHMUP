@@ -13,7 +13,7 @@ public:
 	Entity() = default;
 	~Entity() = default;
 	
-	virtual void tick(float delta) = 0;
+	virtual void tick(float delta);
 
 	//Data
 	vec2 position = { 0,0 };
