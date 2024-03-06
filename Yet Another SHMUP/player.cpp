@@ -1,0 +1,46 @@
+#include "player.h"
+
+Player::Player(SDL_Renderer* renderer)
+{
+	//Player def
+	sprite.set_texture(renderer, "assets/sprites/Ships/spaceShips_001.png");
+	health.set_max(50);
+	rotation = 180;
+	position = { 600, 700 };
+	speed = 500;
+
+	//Base projectile
+	projectile.entity.velocity.y = -1;
+	projectile.entity.speed = 600;
+	projectile.entity.sprite.set_texture(renderer, "assets/sprites/Missiles/spaceMissiles_015.png");
+	projectile.entity.health.set_max(1);
+	projectile.fire_rate = 10;
+	projectile.amount = 2;
+}
+
+void Player::tick(float delta)
+{
+	if (!sprite.visible)
+		return;
+
+	velocity.x = (float)input.is_key_held(SDL_SCANCODE_RIGHT) - (float)input.is_key_held(SDL_SCANCODE_LEFT);
+	velocity.y = (float)input.is_key_held(SDL_SCANCODE_DOWN) - (float)input.is_key_held(SDL_SCANCODE_UP);
+
+	if (input.is_key_held(SDL_SCANCODE_Z))
+	{
+		projectile.timer--;
+
+		if (projectile.timer < 0)
+		{
+			projectile.timer = projectile.fire_rate;
+			fire();
+		}
+	}
+	else if (input.is_key_released(SDL_SCANCODE_Z))
+	{
+		projectile.timer = 0;
+	}
+
+	input.tick();
+	Entity::tick(delta);
+}

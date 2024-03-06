@@ -1,7 +1,7 @@
 #include "health.h"
 #include <algorithm>
 
-Health::Health(int _max)
+void Health::set_max(int _max)
 {
 	max = _max;
 	current = _max;

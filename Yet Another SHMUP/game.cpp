@@ -1,61 +1,35 @@
 #include "game.h"
+#include "enemy_a.h"
 
 void Game::start()
 {
-	//Player def
-	player = std::make_unique<Ship>();
-	player->position = { 300, 250 };
-	player->rotation = 180;
-	player->speed = 250;
-	player->sprite = std::make_unique<Sprite>(renderer, "assets/sprites/Ships/spaceShips_001.png");
-	player->aabb = std::make_unique<AABB>(player->position, player->sprite->size);
-	player->health = std::make_unique<Health>(50);
+	player = std::make_unique<Player>(renderer);
 	entities.push_back(player);
-
-	//enemy def
-	enemy = std::make_unique<Ship>();
-	enemy->position = { 300, 64 };
-	enemy->rotation = 180;
-	enemy->speed = 250;
-	enemy->sprite = std::make_unique<Sprite>(renderer, "assets/sprites/Ships/spaceShips_004.png");
-	enemy->aabb = std::make_unique<AABB>(enemy->position, enemy->sprite->size);
-	enemy->health = std::make_unique<Health>(3);
-	entities.push_back(enemy);
+	
+	//Spawn enemies
+	for (int i = 0; i < 7; i++)
+	{
+		std::shared_ptr<EnemyA> enemy = std::make_unique<EnemyA>(renderer);
+		enemy->position = { 150 + 150 * (float)i, -50};
+		enemies.push_back(enemy);
+		entities.push_back(enemy);
+	}
 }
 
 void Game::tick(float delta)
 {
-	player->velocity.x = (float)input.is_key_held(SDL_SCANCODE_RIGHT) - (float)input.is_key_held(SDL_SCANCODE_LEFT);
-	player->velocity.y = (float)input.is_key_held(SDL_SCANCODE_DOWN) - (float)input.is_key_held(SDL_SCANCODE_UP);
-
-	if (input.is_key_pressed(SDL_SCANCODE_Z))
+	for (auto& projectile : player->children)
 	{
-		std::shared_ptr<Entity> projectile = std::make_shared<Entity>();
-		projectile->speed = 400;
-		projectile->velocity = { 0, -1 };
-		projectile->sprite = std::make_unique<Sprite>(renderer, "assets/sprites/Missiles/spaceMissiles_015.png");
-		projectile->aabb = std::make_unique<AABB>(player->position, projectile->sprite->size);
-		projectile->health = std::make_unique<Health>(1);
-		projectile->position = { player->position.x + player->sprite->center.x, player->position.y + player->sprite->center.y };
-		entities.push_back(projectile);
-		player->projectiles.push_back(projectile);
-	}
-
-	for (auto& p : player->projectiles)
-	{
-		if (p->aabb->intersects(enemy->aabb.get()))
+		for (auto& enemy : enemies)
 		{
-			p->health->change_health(-1);
-			enemy->health->change_health(-1);
-		}
-	}
+			if (!projectile->sprite.visible || !enemy->sprite.visible)
+				continue;
 
-	for (auto& p : enemy->projectiles)
-	{
-		if (p->aabb->intersects(player->aabb.get()))
-		{
-			p->health->change_health(-1);
-			enemy->health->change_health(-1);
+			if (SDL_HasIntersectionF(&projectile->sprite.rect, &enemy->sprite.rect))
+			{
+				projectile->health.change_health(-1);
+				enemy->health.change_health(-1);
+			}
 		}
 	}
 }

@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Modules">
       <UniqueIdentifier>{faaf2906-ee83-47f1-9b17-ff054f53099a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Enemy Variants">
+      <UniqueIdentifier>{3e973907-e28c-4de0-88a5-b1fd78903164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemy Variants">
+      <UniqueIdentifier>{d1b5c95a-05bb-4538-b538-bb005b3a4449}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,9 +57,6 @@
     <ClCompile Include="health.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="aabb.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="ship.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
@@ -62,6 +65,12 @@
     </ClCompile>
     <ClCompile Include="time.cpp">
       <Filter>Source Files\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_a.cpp">
+      <Filter>Source Files\Enemy Variants</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Source Files\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +89,6 @@
     <ClInclude Include="health.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="aabb.h">
-      <Filter>Header Files\Component</Filter>
-    </ClInclude>
     <ClInclude Include="ship.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
@@ -91,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="time.h">
       <Filter>Header Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_a.h">
+      <Filter>Header Files\Enemy Variants</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

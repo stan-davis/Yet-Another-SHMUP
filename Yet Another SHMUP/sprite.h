@@ -6,13 +6,14 @@
 class Sprite
 {
 public:
-	Sprite(SDL_Renderer* renderer, std::string file_path);
+	Sprite() = default;
 	~Sprite();
 
+	void set_texture(SDL_Renderer* renderer, std::string file_path);
 	void render(SDL_Renderer* renderer, SDL_FPoint position, float rotation);
 
 	bool visible = true;
-	SDL_FPoint size = { 0,0 };
+	SDL_FRect rect = { 0,0,0,0 };
 	SDL_FPoint center = { 0,0 };
 
 private:

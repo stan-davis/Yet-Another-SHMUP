@@ -3,11 +3,13 @@
 class Health
 {
 public:
-	Health(int _max);
+	Health() = default;
 	~Health() = default;
+	
+	void set_max(int _max);
+	void change_health(int value);
 
 	int max = 0;
 	int current = 0;
 
-	void change_health(int value);
 };

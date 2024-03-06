@@ -1,5 +1,6 @@
 #include "core.h"
 
+#include "ship.h"
 #include <SDL_image.h>
 #include <cstdio>
 
@@ -19,6 +20,8 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
         printf("Error: Failed to create window or renderer.\n '%s'\n", SDL_GetError());
         return 1;
     }
+
+    SDL_SetWindowTitle(window, "Yet Another SHMUP");
 
     int img_flags = IMG_INIT_PNG;
     if (IMG_Init(img_flags) != img_flags)
@@ -55,17 +58,23 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
 
         //Tick entities
         for (auto& entity : entities)
+        {
             entity->tick(time.get_delta_time());
+
+            for (auto& child : entity->children)
+                child->tick(time.get_delta_time());
+        }
 
         //Render entities
         for (auto& entity : entities)
         {
-            if (entity->sprite)
-                entity->sprite->render(renderer, entity->position, entity->rotation);
+            entity->sprite.render(renderer, entity->position, entity->rotation);
+
+            for (auto& child : entity->children)
+                child->sprite.render(renderer, child->position, child->rotation);
         }
 
         SDL_RenderPresent(renderer);
-        input.tick();
         time.late_tick();
     }
 

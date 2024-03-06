@@ -23,7 +23,6 @@ protected:
 	int window_width, window_height;
 	bool is_running = true;
 
-	Input input;
 	Time time;
 
 	std::vector<std::shared_ptr<Entity>> entities;

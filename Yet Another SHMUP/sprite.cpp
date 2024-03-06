@@ -3,7 +3,13 @@
 #include <SDL_image.h>
 #include <cstdio>
 
-Sprite::Sprite(SDL_Renderer* renderer, std::string file_path)
+Sprite::~Sprite()
+{
+    if(texture) 
+        SDL_DestroyTexture(texture);
+}
+
+void Sprite::set_texture(SDL_Renderer* renderer, std::string file_path)
 {
     SDL_Surface* surface = IMG_Load(file_path.c_str());
 
@@ -21,16 +27,11 @@ Sprite::Sprite(SDL_Renderer* renderer, std::string file_path)
         return;
     }
 
-    size.x = surface->w;
-    size.y = surface->h;
-    center = { (size.x / 2), (size.y / 2) };
+    rect.w = surface->w;
+    rect.h = surface->h;
+    center = { (rect.w / 2), (rect.h / 2) };
 
     SDL_FreeSurface(surface);
-}
-
-Sprite::~Sprite()
-{
-	SDL_DestroyTexture(texture);
 }
 
 void Sprite::render(SDL_Renderer* renderer, SDL_FPoint position, float rotation)
@@ -38,8 +39,10 @@ void Sprite::render(SDL_Renderer* renderer, SDL_FPoint position, float rotation)
     if (!texture || !visible)
         return;
 
-    SDL_Rect srcrect = { 0, 0, (int)size.x, (int)size.y };
-    SDL_FRect dstrect = { position.x, position.y, size.x, size.y };
+    SDL_Rect srcrect = { 0, 0, (int)rect.w, (int)rect.h };
 
-    SDL_RenderCopyExF(renderer, texture, &srcrect, &dstrect, rotation, &center, SDL_FLIP_NONE);
+    rect.x = position.x;
+    rect.y = position.y;
+
+    SDL_RenderCopyExF(renderer, texture, &srcrect, &rect, rotation, &center, SDL_FLIP_NONE);
 }
