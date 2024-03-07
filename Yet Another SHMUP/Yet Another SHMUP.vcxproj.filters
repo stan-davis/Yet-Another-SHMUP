@@ -75,6 +75,15 @@
     <ClCompile Include="text.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="projectile.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_b.cpp">
+      <Filter>Source Files\Enemy Variants</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_boss.cpp">
+      <Filter>Source Files\Enemy Variants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.h">
@@ -109,6 +118,15 @@
     </ClInclude>
     <ClInclude Include="text.h">
       <Filter>Header Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="projectile.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_b.h">
+      <Filter>Header Files\Enemy Variants</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_boss.h">
+      <Filter>Header Files\Enemy Variants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

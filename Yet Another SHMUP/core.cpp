@@ -58,7 +58,7 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
         }
 
         time.tick();
-        SDL_SetRenderDrawColor(renderer, 0, 128, 255, 255); //Blue
+        SDL_SetRenderDrawColor(renderer, 2, 8, 15, 255); //Dark
         SDL_RenderClear(renderer);
 
         //Tick core

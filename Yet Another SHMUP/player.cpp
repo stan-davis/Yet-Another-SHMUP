@@ -26,6 +26,13 @@ void Player::tick(float delta)
 	if (!sprite.visible)
 		return;
 
+	//Some way of polling the window width & height would probably be good here
+	if (position.x < 0 || position.x >= 1280 - sprite.rect.w || position.y < 0 || position.y >= 960 - sprite.rect.h)
+	{
+		position.x -= velocity.x * speed * delta;
+		position.y -= velocity.y * speed * delta;
+	}
+
 	velocity.x = (float)input.is_key_held(SDL_SCANCODE_RIGHT) - (float)input.is_key_held(SDL_SCANCODE_LEFT);
 	velocity.y = (float)input.is_key_held(SDL_SCANCODE_DOWN) - (float)input.is_key_held(SDL_SCANCODE_UP);
 

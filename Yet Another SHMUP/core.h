@@ -26,7 +26,7 @@ protected:
 	TTF_Font* font;
 	int window_width, window_height;
 	bool is_running = true;
-	bool is_debug = true;
+	bool is_debug = false;
 
 	Time time;
 

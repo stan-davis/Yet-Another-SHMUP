@@ -1,9 +1,10 @@
 #pragma once
 
 #include "core.h"
+#include "text.h"
 #include "ship.h"
 #include "player.h"
-#include "text.h"
+#include "enemy_boss.h"
 
 #include <vector>
 
@@ -20,6 +21,7 @@ public:
 private:
 	//Entities
 	std::shared_ptr<Player> player;
+	std::shared_ptr<EnemyBoss> boss;
 	std::vector<std::shared_ptr<Ship>> enemies;
 
 	//Gameplay
@@ -31,5 +33,8 @@ private:
 
 	Text health_text;
 	void update_health_text();
+
+	Text game_over_text;
+	Text win_text;
 };
 

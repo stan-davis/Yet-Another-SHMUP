@@ -129,12 +129,15 @@
   <ItemGroup>
     <ClCompile Include="core.cpp" />
     <ClCompile Include="enemy_a.cpp" />
+    <ClCompile Include="enemy_b.cpp" />
+    <ClCompile Include="enemy_boss.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="health.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="projectile.cpp" />
     <ClCompile Include="ship.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="text.cpp" />
@@ -143,11 +146,14 @@
   <ItemGroup>
     <ClInclude Include="core.h" />
     <ClInclude Include="enemy_a.h" />
+    <ClInclude Include="enemy_b.h" />
+    <ClInclude Include="enemy_boss.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="health.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="projectile.h" />
     <ClInclude Include="ship.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="text.h" />

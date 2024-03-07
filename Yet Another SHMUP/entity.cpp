@@ -2,6 +2,9 @@
 
 void Entity::tick(float delta)
 {
+	if (!sprite.visible)
+		return;
+
 	//Movement
 	position.x += velocity.x * speed * delta;
 	position.y += velocity.y * speed * delta;
