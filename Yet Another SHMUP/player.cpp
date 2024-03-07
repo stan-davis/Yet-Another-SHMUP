@@ -8,6 +8,8 @@ Player::Player(SDL_Renderer* renderer)
 	rotation = 180;
 	position = { 600, 700 };
 	speed = 500;
+	rect = { 0, 0, 40, 40 };
+	rect_offset = { 35, 40 };
 
 	//Base projectile
 	projectile.entity.velocity.y = -1;
@@ -16,6 +18,7 @@ Player::Player(SDL_Renderer* renderer)
 	projectile.entity.health.set_max(1);
 	projectile.fire_rate = 10;
 	projectile.amount = 2;
+	projectile.entity.rect = projectile.entity.sprite.rect;
 }
 
 void Player::tick(float delta)

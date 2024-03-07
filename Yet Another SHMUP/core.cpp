@@ -30,6 +30,14 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
         return 1;
     }
 
+    if (TTF_Init() != 0)
+    {
+        printf("Error: TTF failed to initialize\nSDL Error: '%s'\n", SDL_GetError());
+        return 1;
+    }
+
+    font = TTF_OpenFont("assets/MMXSNES.ttf", 64);
+
     time.set_target_frame_rate(_frame_rate);
 
     start();
@@ -69,18 +77,38 @@ int Core::run(int _window_width, int _window_height, int _frame_rate)
         for (auto& entity : entities)
         {
             entity->sprite.render(renderer, entity->position, entity->rotation);
+            draw_debug_rect(entity->rect);
 
             for (auto& child : entity->children)
+            {
                 child->sprite.render(renderer, child->position, child->rotation);
+                draw_debug_rect(child->rect);
+            }
         }
 
+        //Render (UI)
+        render();
+
         SDL_RenderPresent(renderer);
+
         time.late_tick();
     }
 
+    TTF_CloseFont(font);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    TTF_Quit();
+    IMG_Quit();
     SDL_Quit();
 
     return 0;
+}
+
+void Core::draw_debug_rect(SDL_FRect& rect)
+{
+    if (!is_debug)
+        return;
+
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+    SDL_RenderDrawRectF(renderer, &rect);
 }

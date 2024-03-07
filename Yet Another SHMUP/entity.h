@@ -20,6 +20,10 @@ public:
 	float rotation = 0;
 	float speed = 0;
 
+	//Hitbox
+	SDL_FPoint rect_offset = { 0,0 };
+	SDL_FRect rect = { 0,0,0,0 };
+
 	//Components
 	Sprite sprite;
 	Health health;

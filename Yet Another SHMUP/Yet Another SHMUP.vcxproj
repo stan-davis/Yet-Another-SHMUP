@@ -137,6 +137,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="ship.cpp" />
     <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="text.cpp" />
     <ClCompile Include="time.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="ship.h" />
     <ClInclude Include="sprite.h" />
+    <ClInclude Include="text.h" />
     <ClInclude Include="time.h" />
   </ItemGroup>
   <ItemGroup>
