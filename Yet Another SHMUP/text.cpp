@@ -8,6 +8,9 @@ Text::~Text()
 
 void Text::set_text(SDL_Renderer* renderer, TTF_Font* font, std::string text)
 {
+    if (texture)
+        SDL_DestroyTexture(texture);
+
     SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), FONT_COLOR);
 
     if (!surface)
