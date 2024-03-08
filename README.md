@@ -4,4 +4,4 @@ Yet Another SHMUP (YAS) made with C++ & SDL2
 - Arrow keys to move
 - Press/Hold Z to shoot/autofire
 ## Build instructions
-Clone this repository and open the solution in Visual Studio 2022
+Clone this repository and build the solution in Visual Studio 2022.
